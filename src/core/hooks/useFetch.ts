@@ -9,15 +9,8 @@ export function useFetch<T>(
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorResponse | null>(null);
-  //
-  //
-  //
-  //
-  // TODO: fix compiler issues
-  //
-  //
-  //
-  //
+
+  // oxlint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const controller = new AbortController();
 
@@ -50,6 +43,7 @@ export function useFetch<T>(
     return () => {
       controller.abort();
     };
+    //oxlint-disable-next-line
   }, deps);
 
   return { data, loading, error };
