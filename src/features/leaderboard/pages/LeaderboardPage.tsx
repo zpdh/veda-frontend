@@ -5,6 +5,7 @@ import { ErrorBanner } from "../../../core/components/ErrorBanner";
 import { TableSkeleton } from "../../../core/components/TableSkeleton";
 import { SnapshotTable } from "../components/SnapshotTable";
 import { useLeaderboardNames } from "../hooks/useLeaderboardNames";
+import { formatISODate } from "../../../core/utils/format";
 
 export function LeaderboardPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +26,7 @@ export function LeaderboardPage() {
           <p className="text-base font-medium text-gray-900">{name}</p>
           {hook.data && (
             <p className="mt-0.5 text-xs text-gray-400">
-              {hook.data.fetchedAt}
+              {formatISODate(hook.data.fetchedAt)}
             </p>
           )}
         </div>
