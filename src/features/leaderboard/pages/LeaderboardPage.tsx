@@ -1,19 +1,21 @@
-import { __TEMP__LEADERBOARD_NAMES } from "../constants";
 import { useLatestSnapshot } from "../hooks/useLatestSnapshot";
 import { useSearchParams } from "react-router-dom";
 import { LeaderboardSelector } from "../components/LeaderboardSelector";
 import { ErrorBanner } from "../../../core/components/ErrorBanner";
 import { TableSkeleton } from "../../../core/components/TableSkeleton";
 import { SnapshotTable } from "../components/SnapshotTable";
+import { useLeaderboardNames } from "../hooks/useLeaderboardNames";
 
 export function LeaderboardPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get("name") ?? __TEMP__LEADERBOARD_NAMES[0];
+  const leaderboardNames = useLeaderboardNames().data?.leaderboardNames ?? [];
+  const name = searchParams.get("name") ?? leaderboardNames[0] ?? "";
   const hook = useLatestSnapshot(name);
 
   return (
     <>
       <LeaderboardSelector
+        names={leaderboardNames}
         selected={name}
         onSelect={(newName) => setSearchParams({ name: newName })}
       />

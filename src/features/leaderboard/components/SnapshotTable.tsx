@@ -10,9 +10,9 @@ export function SnapshotTable({ entries }: SnapshotTableProps) {
     <table className="w-full border-collapse">
       <thead>
         <tr>
-          <th className="px-4 py-2 text-right">Rank</th>
+          <th className="px-4 py-2 text-left">Rank</th>
           <th className="px-4 py-2 text-left">Player</th>
-          <th className="px-4 py-2 text-left">Completions</th>
+          <th className="px-4 py-2 text-right">Completions</th>
         </tr>
       </thead>
       <tbody>

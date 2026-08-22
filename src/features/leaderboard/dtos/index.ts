@@ -11,3 +11,7 @@ export interface SnapshotResponse {
   fetchedAt: string;
   entries: EntryOut[];
 }
+
+export interface LeaderboardNamesResponse {
+  leaderboardNames: string[];
+}

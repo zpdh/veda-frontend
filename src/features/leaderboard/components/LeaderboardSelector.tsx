@@ -1,17 +1,18 @@
-import { __TEMP__LEADERBOARD_NAMES } from "../constants";
 
 interface LeaderboardSelectorProps {
+  names: string[];
   selected: string;
   onSelect: (name: string) => void;
 }
 
 export function LeaderboardSelector({
+  names,
   selected,
   onSelect,
 }: LeaderboardSelectorProps) {
   return (
     <div className="flex gap-2 rounded-2xl border border-gray-200 bg-white p-4">
-      {__TEMP__LEADERBOARD_NAMES.map((name) => (
+      {names.map((name) => (
         <button
           key={name}
           onClick={() => onSelect(name)}
