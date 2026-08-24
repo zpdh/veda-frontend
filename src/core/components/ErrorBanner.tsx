@@ -13,17 +13,15 @@ export function ErrorBanner({ error }: ErrorBannerProps) {
   }
 
   return (
-    <div className="flex items-center justify-between rounded-lg border border-red-300 bg-red-50 px-4 py-3">
+    <div className="flex items-center justify-between rounded-lg border border-red-800 bg-red-950 px-4 py-3">
       <div>
-        <p className="text-sm font-medium text-shadow-red-800 text-left">
-          {error.message}
-        </p>
-        <p className="text-xs text-red-600">{error.errorCode}</p>
+        <p className="text-sm font-medium text-veda-bronze">{error.message}</p>
+        <p className="text-xs text-veda-bronze/70">{error.errorCode}</p>
       </div>
       <button
         onClick={() => setDismissed(true)}
-        className="text-red-600 hover:text-red-800"
-        aria-label="Dismiss"
+        className="text-veda-bronze hover:text-veda-text"
+        aria-label="Dispensar"
       >
         x
       </button>
