@@ -14,7 +14,9 @@ export function LeaderboardPage() {
   const hook = useLatestSnapshot(name);
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
+      {hook.error && <ErrorBanner error={hook.error} />}
+
       <LeaderboardSelector
         names={leaderboardNames}
         selected={name}
@@ -32,11 +34,10 @@ export function LeaderboardPage() {
         </div>
 
         {hook.loading && <TableSkeleton rows={5} columns={3} />}
-        {hook.error && <ErrorBanner error={hook.error} />}
         {!hook.loading && !hook.error && hook.data && (
           <SnapshotTable entries={hook.data.entries} />
         )}
       </div>
-    </>
+    </div>
   );
 }
