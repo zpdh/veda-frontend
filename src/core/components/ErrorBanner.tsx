@@ -15,7 +15,7 @@ export function ErrorBanner({ error }: ErrorBannerProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-red-300 bg-red-50 px-4 py-3">
       <div>
-        <p className="text-sm font-medium text-shadow-red-800">
+        <p className="text-sm font-medium text-shadow-red-800 text-left">
           {error.message}
         </p>
         <p className="text-xs text-red-600">{error.errorCode}</p>

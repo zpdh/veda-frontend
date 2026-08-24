@@ -20,13 +20,15 @@ export function useFetch<T>(
     fetchFn(controller.signal)
       .then((res) => setData(res.data))
       .catch((err) => {
-        if (err instanceof DOMException && err.name === "AbortError") {
+        if (axios.isCancel(err) ||(err instanceof DOMException && err.name === "AbortError")) {
           return;
         }
 
         if (axios.isAxiosError(err) && err.response?.data) {
           setError(err.response.data);
-        } else {
+        }
+
+        else {
           setError({
             errorCode: "ERR_UNKNOWN",
             message: err instanceof Error ? err.message : "Unknown error.",
