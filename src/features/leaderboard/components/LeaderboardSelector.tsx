@@ -11,15 +11,15 @@ export function LeaderboardSelector({
   onSelect,
 }: LeaderboardSelectorProps) {
   return (
-    <div className="flex gap-2 rounded-2xl border border-gray-200 bg-white p-4">
+    <div className="flex justify-center items-center gap-2 rounded-2xl border border-veda-border bg-veda-bg p-4">
       {names.map((name) => (
         <button
           key={name}
           onClick={() => onSelect(name)}
           className={
             name === selected
-              ? "rounded-lg border border-gray-400 bg-gray-100 px-4 py-2 text-sm"
-              : "rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-600"
+              ? "rounded-lg border border-veda-text-secondary px-4 py-2 text-sm"
+              : "rounded-lg border border-veda-border px-4 py-2 text-sm text-veda-text-secondary"
           }
         >
           {name}

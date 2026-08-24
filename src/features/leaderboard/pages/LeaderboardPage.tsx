@@ -2,7 +2,6 @@ import { useLatestSnapshot } from "../hooks/useLatestSnapshot";
 import { useSearchParams } from "react-router-dom";
 import { LeaderboardSelector } from "../components/LeaderboardSelector";
 import { ErrorBanner } from "../../../core/components/ErrorBanner";
-import { TableSkeleton } from "../../../core/components/TableSkeleton";
 import { SnapshotTable } from "../components/SnapshotTable";
 import { useLeaderboardNames } from "../hooks/useLeaderboardNames";
 import { formatISODate } from "../../../core/utils/format";
@@ -23,17 +22,16 @@ export function LeaderboardPage() {
         onSelect={(newName) => setSearchParams({ name: newName })}
       />
 
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-        <div className="border-b border-gray-200 px-6 py-5">
-          <p className="text-base font-medium text-gray-900">{name}</p>
+      <div className="overflow-hidden rounded-2xl border border-veda-border bg-veda-surface">
+        <div className="border-b border-veda-border px-6 py-5">
+          <p className="text-base font-medium text-veda-text">{name}</p>
           {hook.data && (
-            <p className="mt-0.5 text-xs text-gray-400">
+            <p className="mt-0.5 text-xs text-veda-text-muted">
               {formatISODate(hook.data.fetchedAt)}
             </p>
           )}
         </div>
 
-        {hook.loading && <TableSkeleton rows={5} columns={3} />}
         {!hook.loading && !hook.error && hook.data && (
           <SnapshotTable entries={hook.data.entries} />
         )}

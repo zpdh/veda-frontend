@@ -7,24 +7,26 @@ interface EntryRowProps {
 function getRankColor(rank: number): string {
   switch (rank) {
     case 1:
-      return "text-amber-500";
+      return "bg-veda-gold/10 text-veda-gold";
     case 2:
-      return "text-gray-400";
+      return "bg-veda-silver/10 text-veda-silver";
     case 3:
-      return "text-orange-700";
+      return "bg-veda-bronze/10 text-veda-bronze";
     default:
-      return "text-gray-900";
+      return "text-veda-test";
   }
 }
 
 export function EntryRow({ entry }: EntryRowProps) {
+  const isTopThree = entry.rank <= 3;
+
   return (
-    <tr>
-      <td className={`px-4 py-2 text-left ${getRankColor(entry.rank)}`}>
+    <tr className={`border-b border-veda-border/40 hover:bg-white/5 ${isTopThree ? getRankColor(entry.rank) : ""}`}>
+      <td className={`px-4 py-3 text-center text-sm font-medium ${isTopThree ? "" : "text-veda-text-muted"}`}>
         {entry.rank}
       </td>
-      <td className="px-4 py-2 text-left">{entry.playerName}</td>
-      <td className="px-4 py-2 text-right">{entry.value}</td>
+      <td className="px-4 py-3 text-left text-sm text-veda-text">{entry.playerName}</td>
+      <td className="px-4 py-3 text-right text-sm text-veda-text-secondary">{entry.value}</td>
     </tr>
   );
 }
