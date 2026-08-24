@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter Variable", system-ui, sans-serif;
+    --color-veda-bg: #0f0f0f;
+    --color-veda-surface: #2f2f2f;
+    --color-veda-border: #262624;
+    --color-veda-text: #fafafa;
+    --color-veda-text-secondary: #8a8a88;
+    --color-veda-text-muted: #6b6b69;
+
+    --color-veda-pure-black: #000000;
+    --color-veda-gold: #fac775;
+    --color-veda-silver: #d3d1c7;
+    --color-veda-bronze: #f0997b;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-veda-bg);
+        color: var(--color-veda-text);
+        font-family: var(--font-sans);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
