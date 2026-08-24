@@ -13,7 +13,7 @@ export function HomePage() {
           </p>
           <button
             onClick={() => navigate("/leaderboards")}
-            className="mt-10 rounded-lg border border-veda-border bg-veda-surface px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary"
+            className="mt-10 rounded-lg border border-veda-border bg-veda-surface px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary transition-colors duration-200 ease-out"
           >
             Leaderboards
           </button>

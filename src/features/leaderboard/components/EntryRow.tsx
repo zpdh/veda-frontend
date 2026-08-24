@@ -21,7 +21,7 @@ export function EntryRow({ entry }: EntryRowProps) {
   const isTopThree = entry.rank <= 3;
 
   return (
-    <tr className={`border-b border-veda-border/40 hover:bg-white/5 ${isTopThree ? getRankColor(entry.rank) : ""}`}>
+    <tr className={`border-b border-veda-border/40 transition-colors duration-200 ease-out hover:bg-white/5 ${isTopThree ? getRankColor(entry.rank) : ""}`}>
       <td className={`px-4 py-3 text-center text-sm font-medium ${isTopThree ? "" : "text-veda-text-muted"}`}>
         {entry.rank}
       </td>

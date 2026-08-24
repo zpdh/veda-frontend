@@ -31,10 +31,11 @@ export function LeaderboardPage() {
             </p>
           )}
         </div>
-
-        {!hook.loading && !hook.error && hook.data && (
-          <SnapshotTable entries={hook.data.entries} />
-        )}
+        <div className="max-h-120 overflow-y-auto">
+          {!hook.loading && !hook.error && hook.data && (
+            <SnapshotTable entries={hook.data.entries} />
+          )}
+        </div>
       </div>
     </div>
   );

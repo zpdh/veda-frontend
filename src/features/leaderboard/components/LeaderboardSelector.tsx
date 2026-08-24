@@ -19,7 +19,7 @@ export function LeaderboardSelector({
           className={
             name === selected
               ? "rounded-lg border border-veda-text-secondary px-4 py-2 text-sm"
-              : "rounded-lg border border-veda-border px-4 py-2 text-sm text-veda-text-secondary"
+              : "rounded-lg border border-veda-border px-4 py-2 text-sm text-veda-text-secondary hover:border-veda-text-muted transition-colors duration-200 ease-out"
           }
         >
           {name}
