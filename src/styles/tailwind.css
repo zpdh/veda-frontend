@@ -4,6 +4,7 @@
     --font-sans: "Inter Variable", system-ui, sans-serif;
     --color-veda-bg: #0f0f0f;
     --color-veda-surface: #1f1f1f;
+    --color-veda-sky: #2f2f2f;
     --color-veda-border: #262624;
     --color-veda-text: #fafafa;
     --color-veda-text-secondary: #8a8a88;
@@ -41,4 +42,8 @@
 
 .fade-in {
     animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-in-fast {
+    animation: fadeIn 0.075s ease-out forwards;
 }
