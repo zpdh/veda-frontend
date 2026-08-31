@@ -7,13 +7,13 @@ interface EntryRowProps {
 function getRankColor(rank: number): string {
   switch (rank) {
     case 1:
-      return "bg-veda-gold/40 text-veda-gold hover:bg-veda-gold/20";
+      return "bg-veda-gold/20 glass text-veda-gold hover:bg-veda-gold/40";
     case 2:
-      return "bg-veda-silver/40 text-veda-silver hover:bg-veda-silver/20";
+      return "bg-veda-silver/20 glass text-veda-silver hover:bg-veda-silver/40";
     case 3:
-      return "bg-veda-bronze/40 text-veda-bronze hover:bg-veda-bronze/20";
+      return "bg-veda-bronze/20 glass text-veda-bronze hover:bg-veda-bronze/40";
     default:
-      return "text-veda-test hover:bg-white/40";
+      return "text-veda-test glass hover:bg-white/20";
   }
 }
 
