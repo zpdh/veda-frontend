@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-veda-border px-16 py-3">
+    <header className="flex items-center justify-between border-b border-veda-border px-16 py-3 bg-veda-bg/20">
       <a href="/" className="text-2xl font-medium text-veda-text">
         Veda
       </a>

@@ -34,7 +34,7 @@ export function SearchBar({
 
   return (
     <div className="relative">
-      <div className="flex items-center rounded-lg border border-veda-sky bg-veda-surface py-2">
+      <div className="flex items-center rounded-lg border border-veda-sky bg-veda-surface/60 glass py-2">
         <input
           type="text"
           value={value}
@@ -48,13 +48,13 @@ export function SearchBar({
       </div>
 
       {focused && suggestions.length > 0 && (
-        <div className="absolute z-10 mt-2 w-full overflow-hidden rounded-xl border border-veda-border bg-veda-surface fade-in-fast">
+        <div className="absolute z-10 mt-2 w-full overflow-hidden rounded-xl border border-veda-border bg-veda-surface/60 fade-in-fast">
           {suggestions.map((sug) => (
             <button
               key={sug}
               type="button"
               onMouseDown={() => onSubmit(sug)}
-              className="block w-full px-4 py-2 text-left text-sm text-veda-text hover:bg-veda-sky"
+              className="block w-full px-4 py-2 text-left text-sm text-veda-text hover:bg-veda-sky/60"
             >
               {sug}
             </button>

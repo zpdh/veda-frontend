@@ -4,7 +4,7 @@ export function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-veda-bg px-6">
+    <div className="bg-img bg-img-alt flex min-h-screen flex-col items-center justify-center bg-veda-bg px-6">
       <div className="max-w-xl translate-y-[-15vh] text-center">
         <div className="text-center fade-in">
           <h1 className="text-8xl font-medium text-veda-text">Veda</h1>
@@ -14,13 +14,13 @@ export function HomePage() {
           <div className="flex justify-between items-center gap-6">
             <button
               onClick={() => navigate("/leaderboards")}
-              className="mt-10 rounded-lg border border-veda-border bg-veda-surface px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary transition-colors duration-200 ease-out hover:cursor-pointer"
+              className="mt-10 rounded-lg border border-veda-text-muted bg-veda-surface/25 px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary transition-colors duration-200 ease-out hover:cursor-pointer"
             >
               Leaderboards
             </button>{" "}
             <button
               onClick={() => navigate("/players")}
-              className="mt-10 rounded-lg border border-veda-border bg-veda-surface px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary transition-colors duration-200 ease-out hover:cursor-pointer"
+              className="mt-10 rounded-lg border border-veda-text-muted bg-veda-surface/25 px-6 py-3 text-sm text-veda-text hover:border-veda-text-secondary transition-colors duration-200 ease-out hover:cursor-pointer"
             >
               Players
             </button>

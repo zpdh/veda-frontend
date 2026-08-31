@@ -22,7 +22,7 @@ export function LeaderboardPage() {
         onSelect={(newName) => setSearchParams({ name: newName })}
       />
 
-      <div className="overflow-hidden rounded-2xl border border-veda-border bg-veda-surface">
+      <div className="overflow-hidden rounded-md border border-veda-border bg-veda-surface/60 glass">
         <div className="border-b border-veda-border px-6 py-5">
           <p className="text-base font-medium text-veda-text">{name}</p>
           {hook.data && (

@@ -1,7 +1,7 @@
 import iconsUrl from "../../assets/icons.svg"
 export function Footer() {
   return (
-    <footer className="flex items-center justify-center gap-5 border-t border-veda-border py-8">
+    <footer className="flex items-center justify-center gap-5 border-t border-veda-border py-8 bg-veda-bg/20">
       <span className="text-xs text-veda-text-muted">
         <a
           href="https://github.com/zpdh/monumenta-veda"

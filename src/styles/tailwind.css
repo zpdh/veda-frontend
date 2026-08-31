@@ -47,3 +47,52 @@
 .fade-in-fast {
     animation: fadeIn 0.075s ease-out forwards;
 }
+
+.bg-img {
+    position: relative;
+    isolation: isolate;
+}
+
+.bg-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.2;
+
+    z-index: -2;
+}
+
+.bg-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0) 35%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-img-main::before {
+    background-image: url("../assets/bg4.webp");
+}
+
+.bg-img-alt::before {
+    background-image: url("../assets/bg3.webp");
+}
+
+.glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
