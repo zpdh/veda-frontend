@@ -11,7 +11,7 @@ export function LeaderboardSelector({
   onSelect,
 }: LeaderboardSelectorProps) {
   return (
-    <div className="flex justify-center items-center gap-2 rounded-md border border-veda-border bg-veda-bg/60 p-4 glass">
+    <div className="flex flex-wrap justify-center items-center gap-2 rounded-md border border-veda-border bg-veda-bg/60 p-4 glass">
       {names.map((name) => (
         <button
           key={name}
