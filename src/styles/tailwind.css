@@ -17,16 +17,37 @@
 }
 
 @layer base {
-    html,
-    body,
-    #root {
-        height: 100%;
-    }
-    body {
-        background-color: var(--color-veda-bg);
-        color: var(--color-veda-text);
-        font-family: var(--font-sans);
-    }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-veda-bg);
+    color: var(--color-veda-text);
+    font-family: var(--font-sans);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-veda-border, #333) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-veda-border, #333);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-veda-text-muted, #666);
+  }
 }
 
 @keyframes fadeIn {

@@ -34,7 +34,7 @@ export function SearchBar({
 
   return (
     <div className="relative">
-      <div className="flex items-center rounded-lg border border-veda-sky bg-veda-surface/60 glass py-2">
+      <div className="flex items-center rounded-sm border border-veda-sky bg-veda-surface/60 glass py-2">
         <input
           type="text"
           value={value}

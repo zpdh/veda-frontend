@@ -12,6 +12,12 @@ export interface SnapshotResponse {
   entries: EntryOut[];
 }
 
-export interface LeaderboardNamesResponse {
-  leaderboardNames: string[];
+export interface LeaderboardOut {
+  leaderboardId: string;
+  leaderboardName: string;
+  estimatedTimePerCompletionMinutes: number;
+}
+
+export interface LeaderboardsResponse {
+  leaderboards: LeaderboardOut[];
 }

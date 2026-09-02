@@ -7,7 +7,7 @@ interface SnapshotTableProps {
 
 export function SnapshotTable({ entries }: SnapshotTableProps) {
   return (
-    <table className="w-full border-collapse">
+    <table className="w-full border-collapse glass">
       <thead>
         <tr className="border-b border-veda-border">
           <th className="px-4 py-2 text-left text-xs font-medium text-veda-text-muted">Rank</th>

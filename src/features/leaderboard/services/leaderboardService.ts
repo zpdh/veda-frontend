@@ -1,6 +1,6 @@
 import API from "../../../core/api/axios";
 import API_ROUTE from "../../../core/api/constants";
-import type { LeaderboardNamesResponse, SnapshotResponse } from "../dtos";
+import type { LeaderboardsResponse, SnapshotResponse } from "../dtos";
 
 const apiRoute = API_ROUTE + "/leaderboards";
 
@@ -10,8 +10,8 @@ export const LeaderboardService = {
       signal,
     });
   },
-  getLeaderboardNames: (signal?: AbortSignal) => {
-    return API.get<LeaderboardNamesResponse>(apiRoute, {
+  getLeaderboards: (signal?: AbortSignal) => {
+    return API.get<LeaderboardsResponse>(apiRoute, {
       signal,
     });
   },

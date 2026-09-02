@@ -8,7 +8,8 @@ import { formatISODate } from "../../../core/utils/format";
 
 export function LeaderboardPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const leaderboardNames = useLeaderboardNames().data?.leaderboardNames ?? [];
+  const leaderboardNames =
+    useLeaderboardNames().data?.leaderboards.map((leaderboard) => leaderboard.leaderboardName) ?? [];
   const name = searchParams.get("name") ?? leaderboardNames[0] ?? "";
   const hook = useLatestSnapshot(name);
 
