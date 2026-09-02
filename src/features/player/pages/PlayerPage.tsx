@@ -5,25 +5,34 @@ import { SearchBar } from "../components/SearchBar";
 import { usePlayer } from "../hooks/usePlayer";
 import { usePlayerNames } from "../hooks/usePlayerNames";
 import { PlayerRankingRow } from "../components/PlayerRankingRow";
+import { PlayerOverviewCard } from "../components/PlayerOverviewCard";
+import { PlaytimeDistributionCard } from "../components/PlaytimeDistributionCard";
 
 export function PlayerPage() {
   const navigate = useNavigate();
   const { playerName = "" } = useParams();
   const [search, setSearch] = useState("");
+
   const playerNames = usePlayerNames().data?.players ?? [];
-  const player = usePlayer(playerName);
+  const { data: playerData, loading, error } = usePlayer(playerName);
 
   const handleSearch = (name: string) => {
-    navigate(`/players/${name}`);
+    if (!name.trim()) return;
+    navigate(`/players/${encodeURIComponent(name.trim())}`);
     setSearch("");
   };
 
-  const entries = player.data?.entries
-    ? [...player.data.entries].sort((a, b) => a.rank - b.rank)
+  const entries = playerData?.entries
+    ? [...playerData.entries].sort((a, b) => a.rank - b.rank)
     : [];
 
+  const playtimeDistribution = entries.map((entry) => ({
+    name: entry.leaderboardName,
+    minutes: entry.estimatedPlaytimeMinutes ?? 0,
+  }));
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <SearchBar
         usernames={playerNames}
         value={search}
@@ -32,53 +41,73 @@ export function PlayerPage() {
         placeholder="Search for a player..."
       />
 
-      {player.error && <ErrorBanner error={player.error} />}
+      {error && <ErrorBanner error={error} />}
 
-      {player.loading && (
-        <div className="rounded-md border border-veda-border bg-veda-surface/80 glass px-6 py-10 text-center text-sm text-veda-text-muted">
-          Loading...
+      {loading ? (
+        <div className="py-12 text-center text-sm text-veda-text-muted">
+          Loading player profile...
         </div>
-      )}
-
-      {player.data && !player.loading && (
+      ) : !playerData ? (
+        <div className="rounded-sm border border-veda-border bg-veda-bg/60 p-8 text-center glass">
+          <p className="text-base font-medium text-veda-text">
+            Player not found.
+          </p>
+          <p className="mt-1 text-xs text-veda-text-muted">
+            No stats recorded for &quot;{playerName}&quot;.
+          </p>
+        </div>
+      ) : (
         <>
-          <h1 className="text-4xl font-medium text-veda-text border-b border-veda-border py-2">
-            {player.data.username}
-          </h1>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <section className="rounded-md border border-veda-border bg-veda-surface/80 glass p-5">
-              <p className="text-xs text-veda-text-muted">Total completions</p>
-              <p className="mt-2 text-3xl font-medium text-veda-text">
-                {player.data.totalCompletions}
-              </p>
-            </section>
-            <section className="rounded-md border border-veda-border bg-veda-surface/80 glass p-5">
-              <p className="text-xs text-veda-text-muted">Leaderboards</p>
-              <p className="mt-2 text-3xl font-medium text-veda-text">
-                {entries.length}
-              </p>
-            </section>
+          <div className="border-b border-veda-border pb-5">
+            <p className="text-xs font-medium uppercase tracking-widest text-veda-text-muted">
+              Player
+            </p>
+
+            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-veda-text">
+              {playerData.username}
+            </h1>
+
+            <div className="mt-3 flex items-center gap-2">
+              {/* reserved for future badges */}
+            </div>
           </div>
 
-          <section className="overflow-hidden rounded-md border border-veda-border bg-veda-surface/80 glass">
-            <div className="border-b border-veda-border px-6 py-5">
-              <h2 className="text-base font-medium text-veda-text">Rankings</h2>
-              <p className="mt-1 text-xs text-veda-text-muted">
-                Current leaderboard positions
-              </p>
-            </div>
-            {entries.length > 0 ? (
-              <div>
-                {entries.map((entry) => (
-                  <PlayerRankingRow key={entry.leaderboardName} entry={entry} />
-                ))}
+          <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+            <section className="flex h-0 min-h-full flex-col rounded-sm border border-veda-border bg-veda-bg/60 p-4 glass">
+              <div className="shrink-0 border-b border-veda-border pb-3">
+                <h2 className="text-sm font-medium uppercase tracking-wider text-veda-text">
+                  Leaderboards
+                </h2>
+                <p className="mt-1 text-xs text-veda-text-muted">
+                  Current positions
+                </p>
               </div>
-            ) : (
-              <p className="px-6 py-8 text-sm text-veda-text-muted">
-                No leaderboard positions recorded yet.
-              </p>
-            )}
-          </section>
+
+              {entries.length > 0 ? (
+                <div className="mt-2 min-h-0 flex-1 overflow-y-auto pr-1">
+                  {entries.map((entry, index) => (
+                    <PlayerRankingRow
+                      key={`${entry.leaderboardName}-${index}`}
+                      entry={entry}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p className="py-8 text-sm text-veda-text-muted">
+                  No leaderboard positions recorded yet.
+                </p>
+              )}
+            </section>
+
+            <aside className="flex flex-col gap-6">
+              <PlayerOverviewCard
+                totalCompletions={playerData.totalCompletions}
+                totalPlaytimeMinutes={playerData.totalPlaytimeMinutes}
+              />
+
+              <PlaytimeDistributionCard data={playtimeDistribution} />
+            </aside>
+          </div>
         </>
       )}
     </div>
