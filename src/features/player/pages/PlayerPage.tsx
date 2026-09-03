@@ -14,10 +14,7 @@ export function PlayerPage() {
   const [search, setSearch] = useState("");
 
   const playerNames = usePlayerNames().data?.players ?? [];
-  const { data: playerData, loading, error } = usePlayer(playerName);
-  //  const playerData = MOCK_PLAYER_DATA;
-  //  const loading = false;
-  //  const error = null;
+  const hook = usePlayer(playerName);
 
   const handleSearch = (name: string) => {
     if (!name.trim()) return;
@@ -25,8 +22,8 @@ export function PlayerPage() {
     setSearch("");
   };
 
-  const entries = playerData?.entries
-    ? [...playerData.entries].sort((a, b) => a.rank - b.rank)
+  const entries = hook.data?.entries
+    ? [...hook.data.entries].sort((a, b) => a.rank - b.rank)
     : [];
 
   const playtimeDistribution = entries.map((entry) => ({
@@ -44,13 +41,13 @@ export function PlayerPage() {
         placeholder="Search for a player..."
       />
 
-      {error && <ErrorBanner error={error} />}
+      {hook.error && <ErrorBanner error={hook.error} />}
 
-      {loading ? (
+      {hook.loading ? (
         <div className="py-12 text-center text-sm text-veda-text-muted">
           Loading player profile...
         </div>
-      ) : !playerData ? (
+      ) : !hook.data? (
         <div className="rounded-sm border border-veda-border bg-veda-bg/60 p-6 sm:p-8 text-center glass">
           <p className="text-base font-medium text-veda-text">
             Player not found.
@@ -67,7 +64,7 @@ export function PlayerPage() {
                 Player
               </p>
               <h1 className="mt-0.5 sm:mt-1 text-2xl sm:text-3xl font-semibold tracking-tight text-veda-text truncate">
-                {playerData.username}
+                {hook.data.username}
               </h1>
             </div>
           </div>
@@ -101,9 +98,9 @@ export function PlayerPage() {
 
             <aside className="order-2 flex flex-col gap-4 sm:gap-6">
               <PlayerOverviewCard
-                weight={playerData.weight}
-                totalCompletions={playerData.totalCompletions}
-                totalPlaytimeMinutes={playerData.totalPlaytimeMinutes}
+                weight={hook.data.weight}
+                totalCompletions={hook.data.totalCompletions}
+                totalPlaytimeMinutes={hook.data.totalPlaytimeMinutes}
               />
               <PlaytimeDistributionCard data={playtimeDistribution} />
             </aside>
