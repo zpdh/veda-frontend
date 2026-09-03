@@ -11,24 +11,29 @@ interface PlayerRankingRowProps {
 export function PlayerRankingRow({ entry }: PlayerRankingRowProps) {
   const hours = Math.floor(entry.estimatedPlaytimeMinutes / 60);
   const minutes = entry.estimatedPlaytimeMinutes % 60;
+
   return (
-    <div className="flex items-center gap-5 border-b border-veda-border px-6 py-4 last:border-b-0">
+    <div className="flex items-center gap-3 sm:gap-5 border-b border-veda-border px-3 sm:px-6 py-3 sm:py-4 last:border-b-0">
       <div
-        className={`min-w-[6ch] shrink-0 text-md font-semibold text-right ${rankColor(entry.rank)}`}
+        className={`min-w-[3.5ch] sm:min-w-[6ch] shrink-0 text-sm sm:text-md font-semibold text-right ${rankColor(
+          entry.rank
+        )}`}
       >
         #{entry.rank}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium text-veda-text">
+        <p className="truncate text-xs sm:text-sm font-medium text-veda-text">
           {entry.leaderboardName}
         </p>
       </div>
       <div className="shrink-0 text-right">
-        <p className="text-sm font-medium text-veda-text">
-          {entry.value.toLocaleString()} completions
+        <p className="text-xs sm:text-sm font-medium text-veda-text">
+          {entry.value.toLocaleString()}{" "}
+          <span className="hidden sm:inline">completions</span>
+          <span className="sm:hidden">comps</span>
         </p>
-        <p className="mt-0.5 text-xs text-veda-text-muted">
-          {hours} hrs {minutes} min
+        <p className="mt-0.5 text-[10px] sm:text-xs text-veda-text-muted">
+          {hours}h {minutes}m
         </p>
       </div>
     </div>
