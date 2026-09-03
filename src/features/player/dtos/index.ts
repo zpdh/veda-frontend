@@ -11,6 +11,7 @@ export interface PlayerEntryOut {
 
 export interface PlayerResponse {
   username: string;
+  weight: number;
   totalCompletions: number;
   totalPlaytimeMinutes: number;
   entries: PlayerEntryOut[];

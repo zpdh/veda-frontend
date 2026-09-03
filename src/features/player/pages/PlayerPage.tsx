@@ -7,14 +7,56 @@ import { usePlayerNames } from "../hooks/usePlayerNames";
 import { PlayerRankingRow } from "../components/PlayerRankingRow";
 import { PlayerOverviewCard } from "../components/PlayerOverviewCard";
 import { PlaytimeDistributionCard } from "../components/PlaytimeDistributionCard";
+import type { PlayerResponse } from "../dtos";
 
+export const MOCK_PLAYER_DATA: PlayerResponse = {
+  username: "VedaKnight99",
+  weight: 8422222.5,
+  totalCompletions: 1422222,
+  totalPlaytimeMinutes: 38455213,
+  entries: [
+    {
+      leaderboardName: "Cyberpunk 2077",
+      rank: 4,
+      value: 12500,
+      estimatedPlaytimeMinutes: 1440, // 37.5% - Largest
+    },
+    {
+      leaderboardName: "Elden Ring",
+      rank: 12,
+      value: 9800,
+      estimatedPlaytimeMinutes: 1080, // 28.1%
+    },
+    {
+      leaderboardName: "Hades II",
+      rank: 1,
+      value: 18400,
+      estimatedPlaytimeMinutes: 720, // 18.8%
+    },
+    {
+      leaderboardName: "Hollow Knight",
+      rank: 29,
+      value: 4100,
+      estimatedPlaytimeMinutes: 360, // 9.4%
+    },
+    {
+      leaderboardName: "Celeste",
+      rank: 8,
+      value: 8700,
+      estimatedPlaytimeMinutes: 240, // 6.3% - Smallest
+    },
+  ],
+};
 export function PlayerPage() {
   const navigate = useNavigate();
   const { playerName = "" } = useParams();
   const [search, setSearch] = useState("");
 
   const playerNames = usePlayerNames().data?.players ?? [];
-  const { data: playerData, loading, error } = usePlayer(playerName);
+  //const { data: playerData, loading, error } = usePlayer(playerName);
+  const playerData = MOCK_PLAYER_DATA;
+  const loading = false;
+  const error = null;
 
   const handleSearch = (name: string) => {
     if (!name.trim()) return;
@@ -58,21 +100,24 @@ export function PlayerPage() {
         </div>
       ) : (
         <>
-          <div className="border-b border-veda-border pb-5">
-            <p className="text-xs font-medium uppercase tracking-widest text-veda-text-muted">
-              Player
-            </p>
+          <div className="flex items-center justify-between border-b border-veda-border pb-5">
+            {/* Player Info */}
+            <div>
+              <p className="text-xs font-medium uppercase tracking-widest text-veda-text-muted">
+                Player
+              </p>
 
-            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-veda-text">
-              {playerData.username}
-            </h1>
+              <h1 className="mt-1 text-3xl font-semibold tracking-tight text-veda-text">
+                {playerData.username}
+              </h1>
 
-            <div className="mt-3 flex items-center gap-2">
-              {/* reserved for future badges */}
+              <div className="mt-3 flex items-center gap-1.5">
+                {/* leaderboard badges */}
+              </div>
             </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+          <div className="grid gap-8 lg:grid-cols-[1fr_400px]">
             <section className="flex h-0 min-h-full flex-col rounded-sm border border-veda-border bg-veda-bg/60 p-4 glass">
               <div className="shrink-0 border-b border-veda-border pb-3">
                 <h2 className="text-sm font-medium uppercase tracking-wider text-veda-text">
@@ -100,7 +145,8 @@ export function PlayerPage() {
             </section>
 
             <aside className="flex flex-col gap-6">
-              <PlayerOverviewCard
+                  <PlayerOverviewCard
+                    weight={playerData.weight}
                 totalCompletions={playerData.totalCompletions}
                 totalPlaytimeMinutes={playerData.totalPlaytimeMinutes}
               />

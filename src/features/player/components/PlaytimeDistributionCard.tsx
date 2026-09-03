@@ -29,12 +29,14 @@ export function PlaytimeDistributionCard({
 }: PlaytimeDistributionCardProps) {
   const totalMinutes = data.reduce((acc, item) => acc + item.minutes, 0);
 
-  const computedData = data.map((item, index) => ({
-    ...item,
-    color: getColor(index, item.color),
-    percentage:
-      totalMinutes > 0 ? Math.round((item.minutes / totalMinutes) * 100) : 0,
-  }));
+  const computedData = data
+    .map((item, index) => ({
+      ...item,
+      color: getColor(index, item.color),
+      percentage:
+        totalMinutes > 0 ? Math.round((item.minutes / totalMinutes) * 100) : 0,
+    }))
+    .sort((a, b) => b.minutes - a.minutes);
 
   const gradientStops = computedData
     .reduce<{ stops: string[]; cumulative: number }>(

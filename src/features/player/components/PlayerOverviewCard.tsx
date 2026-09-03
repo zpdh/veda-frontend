@@ -1,44 +1,52 @@
 interface PlayerOverviewCardProps {
+  weight: number;
   totalCompletions: number;
   totalPlaytimeMinutes: number;
 }
 
 export function PlayerOverviewCard({
+  weight,
   totalCompletions,
   totalPlaytimeMinutes,
 }: PlayerOverviewCardProps) {
-  const playtimeHours = (totalPlaytimeMinutes / 60).toFixed(1);
+  const totalHours = Math.round(totalPlaytimeMinutes / 60);
 
   return (
-    <div className="gap-2 rounded-sm border border-veda-border bg-veda-bg/60 p-4 glass">
+    <div className="rounded-sm border border-veda-border bg-veda-bg/60 p-4 glass">
       <div className="border-b border-veda-border pb-3">
         <h2 className="text-sm font-medium uppercase tracking-wider text-veda-text">
           Overview
         </h2>
-        <p className="mt-1 text-xs text-veda-text-muted">Player statistics</p>
       </div>
 
-      <div className="flex items-center pt-4">
-        <div className="flex-1 pr-4">
-          <p className="text-xs uppercase tracking-wider text-veda-text-muted">
-            Completions
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        {/* Weight Box */}
+        <div className="min-w-0 rounded border border-veda-border/40 bg-veda-surface/30 px-1.5 py-2.5 text-center">
+          <p className="truncate text-[10px] font-medium uppercase tracking-wider text-veda-text-muted">
+            Weight
           </p>
-          <p className="mt-1 text-2xl font-semibold text-veda-text">
-            {totalCompletions.toLocaleString()}
+          <p className="mt-1 truncate text-base font-bold tabular-nums text-veda-text">
+            {weight}
           </p>
         </div>
 
-        <div className="h-10 w-px bg-linear-to-b from-transparent via-veda-border to-transparent" />
+        {/* Completions Box */}
+        <div className="min-w-0 rounded border border-veda-border/40 bg-veda-surface/30 px-1.5 py-2.5 text-center">
+          <p className="truncate text-[10px] font-medium uppercase tracking-wider text-veda-text-muted">
+            Completions
+          </p>
+          <p className="mt-1 truncate text-base font-bold tabular-nums text-veda-text">
+            {totalCompletions}
+          </p>
+        </div>
 
-        <div className="flex-1 pl-4">
-          <p className="text-xs uppercase tracking-wider text-veda-text-muted">
+        {/* Playtime Box */}
+        <div className="min-w-0 rounded border border-veda-border/40 bg-veda-surface/30 px-1.5 py-2.5 text-center">
+          <p className="truncate text-[10px] font-medium uppercase tracking-wider text-veda-text-muted">
             Playtime
           </p>
-          <p className="mt-1 text-2xl font-semibold text-veda-text">
-            {playtimeHours}
-            <span className="ml-1 text-sm font-normal text-veda-text-muted">
-              hrs
-            </span>
+          <p className="mt-1 truncate text-base font-bold tabular-nums text-veda-text">
+            {totalHours}h
           </p>
         </div>
       </div>
