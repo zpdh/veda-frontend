@@ -26,7 +26,7 @@ export function PlayerOverviewCard({
             Weight
           </p>
           <p className="mt-0.5 sm:mt-1 truncate text-sm sm:text-base font-bold tabular-nums text-veda-text">
-            {weight.toLocaleString()}
+            {weight.toLocaleString("en-US")}
           </p>
         </div>
 
@@ -35,16 +35,16 @@ export function PlayerOverviewCard({
             Completions
           </p>
           <p className="mt-0.5 sm:mt-1 truncate text-sm sm:text-base font-bold tabular-nums text-veda-text">
-            {totalCompletions.toLocaleString()}
+            {totalCompletions.toLocaleString("en-US")}
           </p>
         </div>
 
         <div className="min-w-0 rounded border border-veda-border/40 bg-veda-surface/30 px-2 py-2 sm:py-2.5 text-center">
           <p className="truncate text-[10px] font-medium uppercase tracking-wider text-veda-text-muted">
-            Playtime
+            Est. Playtime
           </p>
           <p className="mt-0.5 sm:mt-1 truncate text-sm sm:text-base font-bold tabular-nums text-veda-text">
-            {totalHours.toLocaleString()}h
+            {totalHours.toLocaleString("en-US")}h
           </p>
         </div>
       </div>
