@@ -7,6 +7,7 @@ import { usePlayerNames } from "../hooks/usePlayerNames";
 import { PlayerRankingRow } from "../components/PlayerRankingRow";
 import { PlayerOverviewCard } from "../components/PlayerOverviewCard";
 import { PlaytimeDistributionCard } from "../components/PlaytimeDistributionCard";
+import { useAchievements } from "../hooks/useAchievements";
 
 export function PlayerPage() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function PlayerPage() {
 
   const playerNames = usePlayerNames().data?.players ?? [];
   const hook = usePlayer(playerName);
+  const achs = useAchievements(playerName);
 
   const handleSearch = (name: string) => {
     if (!name.trim()) return;
@@ -47,7 +49,7 @@ export function PlayerPage() {
         <div className="py-12 text-center text-sm text-veda-text-muted">
           Loading player profile...
         </div>
-      ) : !hook.data? (
+      ) : !hook.data ? (
         <div className="rounded-sm border border-veda-border bg-veda-bg/60 p-6 sm:p-8 text-center glass">
           <p className="text-base font-medium text-veda-text">
             Player not found.
@@ -97,10 +99,11 @@ export function PlayerPage() {
             </section>
 
             <aside className="order-2 flex flex-col gap-4 sm:gap-6">
-              <PlayerOverviewCard
+                  <PlayerOverviewCard
                 weight={hook.data.weight}
                 totalCompletions={hook.data.totalCompletions}
                 totalPlaytimeMinutes={hook.data.totalPlaytimeMinutes}
+                achievements={achs.data}
               />
               <PlaytimeDistributionCard data={playtimeDistribution} />
             </aside>

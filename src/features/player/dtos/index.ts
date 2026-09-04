@@ -16,3 +16,8 @@ export interface PlayerResponse {
   totalPlaytimeMinutes: number;
   entries: PlayerEntryOut[];
 }
+
+export interface AchievementsResponse {
+  achievementCount: number;
+  achievementCountTotal: number;
+}
