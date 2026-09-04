@@ -19,7 +19,6 @@ export function PlayerOverviewCard({
         </h2>
       </div>
 
-      {/* Grid wraps cleanly on tiny mobile viewports */}
       <div className="mt-3 sm:mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
         <div className="min-w-0 rounded border border-veda-border/40 bg-veda-surface/30 px-2 py-2 sm:py-2.5 text-center">
           <p className="truncate text-[10px] font-medium uppercase tracking-wider text-veda-text-muted">
