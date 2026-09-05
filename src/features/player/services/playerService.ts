@@ -7,7 +7,6 @@ import type {
 } from "../dtos";
 
 const apiRoute = API_ROUTE + "/players";
-const apiAchievementRoute = API_ROUTE + "/achievements";
 
 export const PlayerService = {
   getAllPlayerNames: (signal?: AbortSignal) => {
@@ -19,7 +18,7 @@ export const PlayerService = {
   },
   getAchievements: (playerName: string, signal?: AbortSignal) => {
     return API.get<AchievementsResponse>(
-      apiAchievementRoute + `/${playerName}`,
+      apiRoute + `/achievements/${playerName}`,
       { signal },
     );
   },
