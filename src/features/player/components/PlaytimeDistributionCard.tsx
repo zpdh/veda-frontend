@@ -70,7 +70,6 @@ export function PlaytimeDistributionCard({
           />
         </div>
 
-        {/* Dynamic 1-column on mobile, 2-column on desktop */}
         <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
           {computedData.map((item) => (
             <div

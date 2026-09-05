@@ -54,7 +54,7 @@ export function SearchBar({
               key={sug}
               type="button"
               onMouseDown={() => onSubmit(sug)}
-              className="block w-full px-4 py-2 text-left text-sm text-veda-text hover:bg-veda-sky/60"
+              className="block w-full px-4 py-2 text-left text-sm text-veda-text hover:bg-veda-sky"
             >
               {sug}
             </button>
