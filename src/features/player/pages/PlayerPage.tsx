@@ -25,6 +25,9 @@ export function PlayerPage() {
   const achs = useAchievements(playerName);
   const weightLeaderboard = useWeightLeaderboard();
 
+  const loading = hook.loading || achs.loading || weightLeaderboard.loading;
+  const error = hook.error ?? achs.error ?? weightLeaderboard.error;
+
   const handleSearch = (name: string) => {
     if (!name.trim()) return;
     navigate(`/players/${encodeURIComponent(name.trim())}`);
@@ -57,9 +60,9 @@ export function PlayerPage() {
         placeholder="Search for a player..."
       />
 
-      {hook.error && <ErrorBanner error={hook.error} />}
+      {error && <ErrorBanner error={error} />}
 
-      {hook.loading ? (
+      {loading ? (
         <div className="py-12 text-center text-sm text-veda-text-muted">
           Loading player profile...
         </div>
