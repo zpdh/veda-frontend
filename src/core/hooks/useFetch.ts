@@ -5,13 +5,18 @@ import axios from "axios";
 export function useFetch<T>(
   fetchFn: (signal: AbortSignal) => Promise<{ data: T }>,
   deps: unknown[],
+  enabled: boolean = true,
 ): HookResult<T> {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(enabled);
   const [error, setError] = useState<ErrorResponse | null>(null);
 
   // oxlint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
     const controller = new AbortController();
 
     setLoading(true);
@@ -46,7 +51,7 @@ export function useFetch<T>(
       controller.abort();
     };
     //oxlint-disable-next-line
-  }, deps);
+  }, [...deps, enabled]);
 
   return { data, loading, error };
 }

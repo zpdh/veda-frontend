@@ -8,6 +8,6 @@ export function useAchievements(
 ): HookResult<AchievementsResponse> {
   return useFetch(
     (signal) => PlayerService.getAchievements(playerName, signal),
-    [],
+    [playerName],
   );
 }

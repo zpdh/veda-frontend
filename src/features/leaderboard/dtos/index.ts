@@ -21,3 +21,13 @@ export interface LeaderboardOut {
 export interface LeaderboardsResponse {
   leaderboards: LeaderboardOut[];
 }
+
+export interface WeightEntryOut {
+  rank: number;
+  playerName: string;
+  weight: number;
+}
+
+export interface WeightLeaderboardResponse {
+  entries: WeightEntryOut[];
+}
