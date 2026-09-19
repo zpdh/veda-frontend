@@ -8,6 +8,12 @@ import { PlayerRankingRow } from "../components/PlayerRankingRow";
 import { PlayerOverviewCard } from "../components/PlayerOverviewCard";
 import { PlaytimeDistributionCard } from "../components/PlaytimeDistributionCard";
 import { useAchievements } from "../hooks/useAchievements";
+import {
+  PlayerBoardBadges,
+  PlayerWeightBadge,
+} from "../components/PlayerBadges";
+import { buildPlayerBadges } from "../utils/badges";
+import { useWeightLeaderboard } from "../../leaderboard/hooks/useWeightLeaderboard";
 
 export function PlayerPage() {
   const navigate = useNavigate();
@@ -17,6 +23,7 @@ export function PlayerPage() {
   const playerNames = usePlayerNames().data?.players ?? [];
   const hook = usePlayer(playerName);
   const achs = useAchievements(playerName);
+  const weightLeaderboard = useWeightLeaderboard();
 
   const handleSearch = (name: string) => {
     if (!name.trim()) return;
@@ -32,6 +39,13 @@ export function PlayerPage() {
     name: entry.leaderboardName,
     minutes: entry.estimatedPlaytimeMinutes ?? 0,
   }));
+
+  const weightRank =
+    weightLeaderboard.data?.entries.find(
+      (entry) =>
+        entry.playerName.toLowerCase() === hook.data?.username.toLowerCase(),
+    )?.rank ?? 0;
+  const badges = hook.data ? buildPlayerBadges(entries, weightRank) : [];
 
   return (
     <div className="flex flex-col gap-4 sm:gap-6 px-3 sm:px-0">
@@ -61,13 +75,19 @@ export function PlayerPage() {
       ) : (
         <>
           <div className="flex items-center justify-between border-b border-veda-border pb-4 sm:pb-5">
-            <div>
+            <div className="min-w-0">
               <p className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-veda-text-muted">
                 Player
               </p>
-              <h1 className="mt-0.5 sm:mt-1 text-2xl sm:text-3xl font-semibold tracking-tight text-veda-text truncate">
-                {hook.data.username}
-              </h1>
+              <div className="mt-0.5 sm:mt-1 flex flex-wrap items-center gap-2 sm:gap-3">
+                <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-veda-text truncate">
+                  {hook.data.username}
+                </h1>
+                <PlayerWeightBadge badges={badges} />
+              </div>
+              <div className="mt-2">
+                <PlayerBoardBadges badges={badges} />
+              </div>
             </div>
           </div>
 

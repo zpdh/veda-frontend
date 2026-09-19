@@ -66,12 +66,42 @@
     }
 }
 
+@keyframes tooltipIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 2px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes tooltipOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, 2px);
+    }
+}
+
 .fade-in {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
 .fade-in-fast {
     animation: fadeIn 0.075s ease-out forwards;
+}
+
+.tooltip-in {
+    animation: tooltipIn 0.12s ease-out forwards;
+}
+
+.tooltip-out {
+    animation: tooltipOut 0.35s ease-out forwards;
 }
 
 .bg-img {
